@@ -69,6 +69,8 @@ namespace nn
 class Result
 {
 public:
+   static const unsigned int SIGN_BIT = 0x80000000u;
+
    enum Level
    {
       LEVEL_SUCCESS = 0,
@@ -257,7 +259,7 @@ public:
    bool
    IsFailure() const
    {
-      return !IsSuccess();
+      return (static_cast<unsigned int>(mValue) & SIGN_BIT) != 0; // level < 0
    }
 
    /**
@@ -272,7 +274,7 @@ public:
    bool
    IsSuccess() const
    {
-      return mValue >= 0; // level >= 0
+      return (static_cast<unsigned int>(mValue) & SIGN_BIT) == 0; // level >= 0
    }
 
    bool
