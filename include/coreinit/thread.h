@@ -177,7 +177,6 @@ WUT_CHECK_OFFSET(OSTLSSection, 0x00, data);
 WUT_CHECK_SIZE(OSTLSSection, 0x08);
 
 #define OS_THREAD_TAG 0x74487244u
-#pragma pack(push, 1)
 struct WUT_ALIGNAS(8) OSThread
 {
    OSContext context;
@@ -327,7 +326,6 @@ struct WUT_ALIGNAS(8) OSThread
    //! Cleared on thread creation but never used
    uint32_t reserved[5];
 };
-#pragma pack(pop)
 WUT_CHECK_OFFSET(OSThread, 0x320, tag);
 WUT_CHECK_OFFSET(OSThread, 0x324, state);
 WUT_CHECK_OFFSET(OSThread, 0x325, attr);
